@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { scrollToBottom } from '../../../lib/maintainScroll';
 
 import ConversationChoice from './ConversationChoice';
 
@@ -10,6 +11,12 @@ export default class ConversationChoices extends React.PureComponent {
     onChoose: PropTypes.func.isRequired,
     active: PropTypes.bool,
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.active && !prevProps.active) {
+      scrollToBottom();
+    }
+  }
 
   render() {
     const { choices, active, onChoose } = this.props;
@@ -46,6 +53,13 @@ export default class ConversationChoices extends React.PureComponent {
             justify-content: center;
             padding: 0.5rem;
             border-top: 2px solid rgb(189, 168, 222);
+            opacity: 0;
+            transform: translateY(5rem);
+            transition: opacity 0.3s linear, transform 0.3s ease;
+          }
+          .ConversationChoices_active {
+            opacity: 1;
+            transform: translateY(0);
           }
           @media screen and (max-width: 600px) {
             .ConversationChoices {

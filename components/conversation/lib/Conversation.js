@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { scrollToBottom } from '../../../lib/maintainScroll';
 import ConversationMessages from './ConversationMessages';
 import ConversationChoices from './ConversationChoices';
 
@@ -28,9 +27,6 @@ export default class Conversation extends React.PureComponent {
 
   componentDidMount() {
     this.props.driver(this.say, this.choice);
-    setTimeout(() => scrollToBottom(), 100);
-    setTimeout(() => scrollToBottom(), 200);
-    setTimeout(() => scrollToBottom(), 300);
   }
 
   async offerChoice(choices) {
