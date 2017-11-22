@@ -1,8 +1,9 @@
 {
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next"
+    "build": "next build && next export",
+    "start": "next",
+    "deploy": "./deploy.sh"
   },
   "dependencies": {
     "babel-plugin-transform-assets": "^0.2.0",
