@@ -1,13 +1,29 @@
 {
   "presets": ["next/babel"],
-  "plugins": [
-    [
-      "transform-assets",
-      {
-        "extensions": ["txt", "svg", "png"],
-        "regExp": ".*/static/(.+)",
-        "name": "/map-filter-reduce/static/[1]?[sha512:hash:base64:7]"
-      }
-    ]
-  ]
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "transform-assets",
+          {
+            "extensions": ["txt", "svg", "png"],
+            "regExp": ".*/static/(.+)",
+            "name": "/static/[1]?[sha512:hash:base64:7]"
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "transform-assets",
+          {
+            "extensions": ["txt", "svg", "png"],
+            "regExp": ".*/static/(.+)",
+            "name": "/map-filter-reduce/static/[1]?[sha512:hash:base64:7]"
+          }
+        ]
+      ]
+    }
+  }
 }

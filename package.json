@@ -3,12 +3,31 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "util:eslint": "eslint components lib pages",
+    "util:prettier": "prettier --write --trailing-comma all --single-quote",
+    "precommit": "lint-staged && npm run util:eslint"
   },
   "dependencies": {
     "babel-plugin-transform-assets": "^0.2.0",
+    "classnames": "^2.2.5",
     "next": "^4.1.4",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "react-emojione": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "eslint": "^4.11.0",
+    "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "prettier": "^1.8.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run util:prettier",
+      "git add"
+    ]
   }
 }
