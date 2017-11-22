@@ -21,7 +21,7 @@ npm run build
 cp -r out/ $work_dir
 rm -rf out/
 git checkout gh-pages
-git merge src
+git merge master
 rm -rf pages static scripts LICENSE next.config.js package-lock.json package.json README.md
 cp -r $work_dir/* .
 touch .nojekyll
