@@ -6,6 +6,8 @@ const asset = require('../../static/images/emoji.png');
 
 const style = {
   backgroundImage: `url(${asset})`,
+  width: 20,
+  height: 20,
 };
 
 const Emojify = ({ children }) => (

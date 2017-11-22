@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Button from '../../button/Button';
+import Emojify from '../../emoji/Emojify';
 
 export default class ConversationChoice extends React.PureComponent {
   static propTypes = {
@@ -23,34 +24,37 @@ export default class ConversationChoice extends React.PureComponent {
         className={cx('ConversationChoice', { ConversationChoice_hide: hide })}
         onClick={this.handleClick}
       >
-        {choice}
+        <Emojify>{choice}</Emojify>
         <style jsx global>{`
           .ConversationChoice {
-            margin: 0.5rem;
-            animation: 0.3s ConversationChoice-in
-              cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+            margin: 0.25rem 0.5rem;
+            /* animation: 0.3s ConversationChoice-in
+              cubic-bezier(0.175, 0.885, 0.32, 1.275) both; */
           }
           .ConversationChoice_hide {
-            animation: 0.3s ConversationChoice-out
-              cubic-bezier(0.6, -0.28, 0.735, 0.045) both;
+            /* animation: 0.3s ConversationChoice-out
+              cubic-bezier(0.6, -0.28, 0.735, 0.045) both; */
           }
-          .ConversationChoice:nth-child(2) {
-            animation-delay: 0.05s;
-          }
-          .ConversationChoice:nth-child(3) {
+          .ConversationChoice:nth-child(1) {
             animation-delay: 0.1s;
           }
-          .ConversationChoice:nth-child(4) {
+          .ConversationChoice:nth-child(2) {
             animation-delay: 0.15s;
           }
-          .ConversationChoice:nth-child(5) {
+          .ConversationChoice:nth-child(3) {
             animation-delay: 0.2s;
           }
-          .ConversationChoice:nth-child(6) {
+          .ConversationChoice:nth-child(4) {
             animation-delay: 0.25s;
           }
-          .ConversationChoice:nth-child(7) {
+          .ConversationChoice:nth-child(5) {
             animation-delay: 0.3s;
+          }
+          .ConversationChoice:nth-child(6) {
+            animation-delay: 0.35s;
+          }
+          .ConversationChoice:nth-child(7) {
+            animation-delay: 0.4s;
           }
 
           @keyframes ConversationChoice-in {

@@ -44,21 +44,22 @@ export default class ConversationChoices extends React.PureComponent {
             left: 50%;
             width: 600px;
             margin-left: -300px;
-            height: 150px;
+            min-height: 150px;
             background: white;
 
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem;
+            padding: 0 0.5rem;
             border-top: 2px solid rgb(189, 168, 222);
             opacity: 0;
-            transform: translateY(5rem);
-            transition: opacity 0.3s linear, transform 0.3s ease;
+            transform: translateY(150px);
+            transition: opacity 0.3s linear, transform 0.3s ease-in;
           }
           .ConversationChoices_active {
             opacity: 1;
+            transition: opacity 0.3s linear, transform 0.3s ease-out;
             transform: translateY(0);
           }
           @media screen and (max-width: 600px) {

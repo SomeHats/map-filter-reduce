@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import delay from '../../../lib/delay';
 import ConversationMessages from './ConversationMessages';
 import ConversationChoices from './ConversationChoices';
 
@@ -26,7 +27,11 @@ export default class Conversation extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.driver(this.say, this.choice);
+    this.props.driver({
+      say: this.say,
+      choice: this.choice,
+      delay: delay,
+    });
   }
 
   async offerChoice(choices) {
@@ -64,6 +69,7 @@ export default class Conversation extends React.PureComponent {
   choice = async choices => {
     const value = await this.offerChoice(choices);
     await this.say(choices[value], { fromUser: true });
+    await delay(300);
     return value;
   };
 
