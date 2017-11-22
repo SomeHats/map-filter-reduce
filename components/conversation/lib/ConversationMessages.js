@@ -13,14 +13,6 @@ export default class ConversationMessages extends React.PureComponent {
 
   render() {
     const { messages } = this.props;
-    return (
-      <div className="ConversationMessages">
-        {messages}
-        <style jsx global>{`
-          .ConversationMessages {
-          }
-        `}</style>
-      </div>
-    );
+    return <div className="ConversationMessages">{messages}</div>;
   }
 }
