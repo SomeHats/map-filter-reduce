@@ -13,7 +13,7 @@ export default class Message extends React.PureComponent {
   componentDidMount() {
     setTimeout(() => {
       this.props.onNext();
-    }, 500 + Math.random() * 500);
+    }, 750 + Math.random() * 500);
   }
 
   render() {

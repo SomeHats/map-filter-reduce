@@ -10,7 +10,7 @@ export default async (convo, { say, choice, delay }) => {
   await say('Hi!');
   await say("I'm Alex ✨");
   await say(
-    "I'm gonna talk a bit about some really great tools work working with lists of data in code.",
+    "I'm gonna talk a bit about some really great tools for working with lists of data in code.",
   );
   await say('Have you done much programming before?');
 
@@ -34,43 +34,7 @@ export default async (convo, { say, choice, delay }) => {
       })) === 'learn'
     ) {
       convo.setState({ extraDefinitions: true });
-
-      await say('Hmmm...');
-      await say(
-        <TextMessage>
-          You could try{' '}
-          <a
-            href="https://www.codecademy.com/learn/learn-javascript"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Codecademy
-          </a>?
-        </TextMessage>,
-      );
-      await say(
-        <TextMessage>
-          or{' '}
-          <a
-            href="https://codebar.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            codebar
-          </a>{' '}
-          if there's one near you
-        </TextMessage>,
-      );
-      if (
-        (await choice({
-          cool: 'Cool!',
-          work: 'seems like a lot of work...',
-        })) === 'work'
-      ) {
-        await say('¯\\_(ツ)_/¯');
-      } else {
-        await say(<EmojiMessage>🎉</EmojiMessage>);
-      }
+      await codeResources();
     } else {
       await say(<EmojiMessage>🎉</EmojiMessage>);
     }
@@ -90,6 +54,16 @@ export default async (convo, { say, choice, delay }) => {
       convo.setState({ extraDefinitions: true });
       await say('No worries!');
       await say("I'll make sure to explain those terms when I get to them 😁");
+      if (
+        (await choice({
+          thanks: 'Thanks!',
+          learn: 'Where can I learn more code?',
+        })) === 'learn'
+      ) {
+        await codeResources();
+      } else {
+        await say(<EmojiMessage>❤️</EmojiMessage>);
+      }
     } else {
       await say('I ❤️ arrays too, pal');
     }
@@ -117,27 +91,10 @@ export default async (convo, { say, choice, delay }) => {
       await say('This explanation is gonna be using JavaScript.');
       await say('In python, everything works more or less the same');
       await say('but looks a little bit different.');
-      await say("I'll send you a link for the python equivalent at the end");
-      if (
-        (await choice({
-          cool: 'Cool!',
-          now: 'Can I just get the link now?',
-        })) === 'now'
-      ) {
-        await say(
-          <TextMessage>
-            <a
-              href="http://book.pythontips.com/en/latest/map_filter.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Here you go
-            </a>
-          </TextMessage>,
-        );
-      } else {
-        await say(<EmojiMessage>🎉</EmojiMessage>);
-      }
+      await sendLinkAtEnd(
+        'python',
+        'http://book.pythontips.com/en/latest/map_filter.html',
+      );
     } else if (language === 'ruby') {
       await say(<EmojiMessage>💎💎💎</EmojiMessage>);
       await say("(kinda sucks there's no red gem emoji)");
@@ -146,27 +103,10 @@ export default async (convo, { say, choice, delay }) => {
       await say(
         "Things aren't quite the same in ruby, but the concepts are transferable",
       );
-      await say("I'll send you a link for the ruby equivalent at the end");
-      if (
-        (await choice({
-          cool: 'Cool!',
-          now: 'Can I just get the link now?',
-        })) === 'now'
-      ) {
-        await say(
-          <TextMessage>
-            <a
-              href="http://queirozf.com/entries/ruby-map-each-collect-inject-reject-select-quick-reference"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Here you go
-            </a>
-          </TextMessage>,
-        );
-      } else {
-        await say(<EmojiMessage>🎉</EmojiMessage>);
-      }
+      await sendLinkAtEnd(
+        'ruby',
+        'http://queirozf.com/entries/ruby-map-each-collect-inject-reject-select-quick-reference',
+      );
     } else if (language === 'none') {
       await say(<EmojiMessage>😕😕😕</EmojiMessage>);
       await say('Sorry!!');
@@ -196,6 +136,7 @@ export default async (convo, { say, choice, delay }) => {
           </TextMessage>,
         );
         await say("I'll probably just send the ¯\\_(ツ)_/¯ again though");
+        await delay(1000);
         await say('¯\\_(ツ)_/¯');
       } else {
         await say(<EmojiMessage>❤️</EmojiMessage>);
@@ -203,5 +144,60 @@ export default async (convo, { say, choice, delay }) => {
     }
   } else {
     convo.setState({ language: 'none' });
+  }
+
+  async function codeResources() {
+    await say('Hmmm...');
+    await say(
+      <TextMessage>
+        You could try{' '}
+        <a
+          href="https://www.codecademy.com/learn/learn-javascript"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Codecademy
+        </a>?
+      </TextMessage>,
+    );
+    await say(
+      <TextMessage>
+        or{' '}
+        <a href="https://codebar.io/" target="_blank" rel="noopener noreferrer">
+          codebar
+        </a>{' '}
+        if there's one near you
+      </TextMessage>,
+    );
+    if (
+      (await choice({
+        cool: 'Cool!',
+        work: 'seems like a lot of work...',
+      })) === 'work'
+    ) {
+      await say('¯\\_(ツ)_/¯');
+    } else {
+      await say(<EmojiMessage>🎉</EmojiMessage>);
+    }
+  }
+
+  async function sendLinkAtEnd(lang, link) {
+    await say(`I'll send you a link for the ${lang} equivalent at the end`);
+    if (
+      (await choice({
+        cool: 'Cool!',
+        now: 'Can I just get the link now?',
+      })) === 'now'
+    ) {
+      await say(
+        <TextMessage>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            Here you go
+          </a>
+        </TextMessage>,
+      );
+    } else {
+      await say(<EmojiMessage>🎉</EmojiMessage>);
+    }
   }
 };
