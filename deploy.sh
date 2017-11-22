@@ -33,7 +33,7 @@ git add -A
 git commit -m "Build from $current_commit"
 =======
 git merge master
-rm -rf pages static scripts LICENSE next.config.js package-lock.json package.json README.md
+rm -rf pages static scripts LICENSE next.config.js package-lock.json package.json README.md deploy.sh .babelrc
 cp -r $work_dir/* .
 touch .nojekyll
 git add -A
