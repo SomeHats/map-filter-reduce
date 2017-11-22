@@ -30,19 +30,11 @@ const Layout = ({ children }) => (
         box-sizing: border-box;
       }
 
-      .Layout {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-
       main {
         display: block;
         width: 100%;
         max-width: 600px;
-        height: 100%;
+        min-height: 100vh;
         margin: auto;
         background: white;
         box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);

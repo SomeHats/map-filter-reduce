@@ -32,6 +32,9 @@ export default class Message extends React.PureComponent {
             width: auto;
             overflow: hidden;
           }
+          .Message_fromUser {
+            margin-left: auto;
+          }
           .Message::after {
             content: '';
             display: block;
@@ -47,13 +50,32 @@ export default class Message extends React.PureComponent {
             color: white;
             animation: Message-in-fromLeft 0.2s ease-out both;
           }
+          .Message_fromUser .Message-content {
+            float: right;
+            background: #ddd;
+            color: black;
+            animation-name: Message-in-fromRight;
+          }
           .Message_fromUs + .Message_fromUs .Message-content {
+            margin-top: 0.2rem;
+          }
+          .Message_fromUser + .Message_fromUser .Message-content {
             margin-top: 0.2rem;
           }
           @keyframes Message-in-fromLeft {
             from {
               opacity: 0;
               transform: translateX(-10rem);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          @keyframes Message-in-fromRight {
+            from {
+              opacity: 0;
+              transform: translateX(10rem);
             }
             to {
               opacity: 1;
