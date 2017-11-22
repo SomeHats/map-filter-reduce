@@ -8,6 +8,7 @@ const Layout = ({ children }) => (
       <title>
         Map, Filter and Reduce - An Interactive Explanation - Alex Dytrych
       </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
     <main>{children}</main>
