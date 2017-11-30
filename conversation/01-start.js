@@ -1,8 +1,9 @@
 import React from 'react';
-import BeginMessage from '../../messages/BeginMessage';
-import TextMessage from '../../messages/TextMessage';
-import BreakMessage from '../../messages/BreakMessage';
-import EmojiMessage from '../../messages/EmojiMessage';
+import BeginMessage from '../components/messages/BeginMessage';
+import TextMessage from '../components/messages/TextMessage';
+import BreakMessage from '../components/messages/BreakMessage';
+import EmojiMessage from '../components/messages/EmojiMessage';
+import ExternalLink from '../components/link/ExternalLink';
 
 export default async (convo, { say, choice, delay }) => {
   await say(<BeginMessage />);
@@ -27,12 +28,12 @@ export default async (convo, { say, choice, delay }) => {
       "This thing is intended for folks who've written a little code before",
     );
     await say("That's not a big deal - I'll try and keep this jargon free");
-    if (
-      (await choice({
-        ok: 'Sounds good!',
-        learn: 'Where could I learn to code?',
-      })) === 'learn'
-    ) {
+
+    const learnCode = await choice({
+      ok: 'Sounds good!',
+      learn: 'Where could I learn to code?',
+    });
+    if (learnCode === 'learn') {
       convo.setState({ extraDefinitions: true });
       await codeResources();
     } else {
@@ -54,12 +55,12 @@ export default async (convo, { say, choice, delay }) => {
       convo.setState({ extraDefinitions: true });
       await say('No worries!');
       await say("I'll make sure to explain those terms when I get to them 😁");
-      if (
-        (await choice({
-          thanks: 'Thanks!',
-          learn: 'Where can I learn more code?',
-        })) === 'learn'
-      ) {
+
+      const learnCode = await choice({
+        thanks: 'Thanks!',
+        learn: 'Where can I learn more code?',
+      });
+      if (learnCode === 'learn') {
         await codeResources();
       } else {
         await say(<EmojiMessage>❤️</EmojiMessage>);
@@ -114,24 +115,20 @@ export default async (convo, { say, choice, delay }) => {
         "We're going to be focussing on JavaScript in this explanation",
       );
       await say('but most of the concepts are transferable');
-      if (
-        (await choice({
-          ok: 'Ok! 😀',
-          mad: "I'm mad you didn't include my fav language",
-        })) === 'mad'
-      ) {
+
+      const mad = await choice({
+        ok: 'Ok! 😀',
+        mad: "I'm mad you didn't include my fav language",
+      });
+      if (mad === 'mad') {
         await say('¯\\_(ツ)_/¯');
         await say('You could tweet me I guess?');
         await say(
           <TextMessage>
             I'm{' '}
-            <a
-              href="https://twitter.com/somehats"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <ExternalLink href="https://twitter.com/somehats">
               @SomeHats
-            </a>{' '}
+            </ExternalLink>{' '}
             on there
           </TextMessage>,
         );
@@ -151,30 +148,23 @@ export default async (convo, { say, choice, delay }) => {
     await say(
       <TextMessage>
         You could try{' '}
-        <a
-          href="https://www.codecademy.com/learn/learn-javascript"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ExternalLink href="https://www.codecademy.com/learn/learn-javascript">
           Codecademy
-        </a>?
+        </ExternalLink>?
       </TextMessage>,
     );
     await say(
       <TextMessage>
-        or{' '}
-        <a href="https://codebar.io/" target="_blank" rel="noopener noreferrer">
-          codebar
-        </a>{' '}
-        if there's one near you
+        or <ExternalLink href="https://codebar.io/">codebar</ExternalLink> if
+        there's one near you
       </TextMessage>,
     );
-    if (
-      (await choice({
-        cool: 'Cool!',
-        work: 'seems like a lot of work...',
-      })) === 'work'
-    ) {
+
+    const work = await choice({
+      cool: 'Cool!',
+      work: 'Seems like a lot of work...',
+    });
+    if (work === 'work') {
       await say('¯\\_(ツ)_/¯');
     } else {
       await say(<EmojiMessage>🎉</EmojiMessage>);
@@ -183,17 +173,15 @@ export default async (convo, { say, choice, delay }) => {
 
   async function sendLinkAtEnd(lang, link) {
     await say(`I'll send you a link for the ${lang} equivalent at the end`);
-    if (
-      (await choice({
-        cool: 'Cool!',
-        now: 'Can I just get the link now?',
-      })) === 'now'
-    ) {
+
+    const getLink = await choice({
+      cool: 'Cool!',
+      now: 'Can I just get the link now?',
+    });
+    if (getLink === 'now') {
       await say(
         <TextMessage>
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            Here you go
-          </a>
+          <ExternalLink href={link}>Here you go</ExternalLink>
         </TextMessage>,
       );
     } else {

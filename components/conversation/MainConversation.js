@@ -1,8 +1,10 @@
 import React from 'react';
-import Conversation from './lib/Conversation';
+
+import start from '../../conversation/01-start';
+
 import TextMessage from '../messages/TextMessage';
 import WelcomeMessage from '../messages/WelcomeMessage';
-import start from './parts/01-start';
+import Conversation from './lib/Conversation';
 
 const initialMessages = [<WelcomeMessage key="welcome" />];
 

@@ -64,22 +64,24 @@ export default class Message extends React.PureComponent {
           }
           @keyframes Message-in-fromLeft {
             from {
+              transform-origin: center left;
               opacity: 0;
-              transform: translateX(-10rem);
+              transform: scale(0) translateX(-10rem);
             }
             to {
               opacity: 1;
-              transform: translateX(0);
+              transform: scale(1) translateX(0);
             }
           }
           @keyframes Message-in-fromRight {
             from {
+              transform-origin: center right;
               opacity: 0;
-              transform: translateX(10rem);
+              transform: scale(0) translateX(10rem);
             }
             to {
               opacity: 1;
-              transform: translateX(0);
+              transform: scale(1) translateX(0);
             }
           }
         `}</style>
