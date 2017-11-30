@@ -9,7 +9,14 @@ export default class TextMessage extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    onNext: PropTypes.func.isRequired,
   };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.onNext();
+    }, 750 + Math.random() * 500);
+  }
 
   render() {
     const { children, className, ...props } = this.props;

@@ -10,12 +10,6 @@ export default class Message extends React.PureComponent {
     fromUser: PropTypes.bool,
   };
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.onNext();
-    }, 750 + Math.random() * 500);
-  }
-
   render() {
     const { className, children, fromUser } = this.props;
     return (

@@ -133,7 +133,7 @@ export default async (convo, { say, choice, delay }) => {
           </TextMessage>,
         );
         await say("I'll probably just send the ¯\\_(ツ)_/¯ again though");
-        await delay(1000);
+        await say(<BreakMessage />);
         await say('¯\\_(ツ)_/¯');
       } else {
         await say(<EmojiMessage>❤️</EmojiMessage>);
