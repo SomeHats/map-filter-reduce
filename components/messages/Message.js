@@ -22,7 +22,6 @@ export default class Message extends React.PureComponent {
         <div className="Message-content">{children}</div>
         <style jsx global>{`
           .Message {
-            max-width: 80%;
             width: auto;
             overflow: hidden;
           }
@@ -36,6 +35,8 @@ export default class Message extends React.PureComponent {
           }
           .Message-content {
             float: left;
+            max-width: 80%;
+            overflow: auto;
             display: inline-block;
             padding: 0.5rem 0.75rem;
             margin: 1rem 1rem 0 1rem;

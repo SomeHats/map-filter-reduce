@@ -165,6 +165,7 @@ export default async (convo, { say, choice, delay }) => {
       work: 'Seems like a lot of work...',
     });
     if (work === 'work') {
+      convo.changeBy('intoIt', -1);
       await say('¯\\_(ツ)_/¯');
     } else {
       await say(<EmojiMessage>🎉</EmojiMessage>);

@@ -16,7 +16,8 @@ export default class EmojiMessage extends React.PureComponent {
         {children}
         <style jsx global>{`
           .EmojiMessage .Message-content {
-            height: 3rem;
+            height: 4rem;
+            padding-top: 1.5rem;
             background: none;
           }
           .EmojiMessage .Message-content span {
