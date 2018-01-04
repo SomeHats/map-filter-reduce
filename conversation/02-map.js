@@ -1,7 +1,8 @@
 import React from 'react';
 import BreakMessage from '../components/messages/BreakMessage';
-import EmojiMessage from '../components/messages/EmojiMessage';
+import TextMessage from '../components/messages/TextMessage';
 import CodeMessage from '../components/messages/CodeMessage';
+import ExternalLink from '../components/link/ExternalLink';
 
 export default async (convo, { say, choice }) => {
   await say(<BreakMessage />);

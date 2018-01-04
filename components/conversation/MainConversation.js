@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import start from '../../conversation/01-start';
-import map from '../../conversation/02-map';
+// import map from '../../conversation/02-map';
 
 import TextMessage from '../messages/TextMessage';
 import WelcomeMessage from '../messages/WelcomeMessage';
@@ -16,8 +16,14 @@ export default class MainConversation extends React.PureComponent {
   };
 
   driver = async methods => {
+    if (!process.browser) return;
     // await start(this, methods);
-    await map(this, methods);
+    // await map(this, methods);
+    const InteractiveMessage = (await import('../messages/InteractiveMessage'))
+      .default;
+    const testInteractive = await import('../../interactives/test');
+    await methods.say('Woah');
+    await methods.say(<InteractiveMessage run={testInteractive.default} />);
   };
 
   changeBy(prop, delta) {
